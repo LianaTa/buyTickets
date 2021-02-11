@@ -1,0 +1,48 @@
+<?php
+ 
+$trip1 = array(mktime(18, 0, 0, 8,21,2021 ),mktime(18,30,0,8,21,2021),mktime(18,45,0,8,21,2021),mktime(19,0,0,8,21,2021),mktime(19,15,0,8,21,2021),mktime(21,0,0,8,21,2021));
+$trip2 =  array(mktime(18,30,0,8,21,2021),mktime(18,45,0,8,21,2021),mktime(19,00,0,8,21,2021),mktime(19,15,0,8,21,2021),mktime(19,35,0,8,21,2021),mktime(21,50,0,8,21,2021),mktime(21,55,0,8,21,2021));
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>buytickets</title>
+</head>
+<body>
+	<form>
+			<p>
+      			<label for="user-direction">Направление</label>
+      			<select id = "user-direction">
+      				<option value="из A в B">из A в B</option>
+                	<option value="из B в A">из B в A</option>
+                	<option value="из A в B и обратно в А">из A в B и обратно в А</option>
+      			</select>
+    		</p>
+    		<p>
+    			<label for="trip-time">Выберите время</label>
+				<!--<select name="time" id="time">
+					<?php
+						//for($i=0;$i<count($trip1);$i++){
+						//	echo "<option value='".date('H-i',$trip1[$i])."'>".date('H-i',$trip1[$i])."(из А в В)</option>";
+						}
+
+					?>
+				</select>-->
+				<select name="back-time" id="trip-time">
+					<?php
+						for($i=0;$i<count($trip2);$i++){
+							echo "<option value='".date('H-i',$trip2[$i])."'>".date('H-i',$trip2[$i])."(из В в А)</option>";
+						}
+
+					?>
+				</select>
+    		<p>
+      			<label for="tickets-num">Количество билетов</label>
+      			<input id="tickets-num" type="text" name="email">
+    		</p>
+        	<button class="btn btn--contact_form" type="submit">Посчитать</button>
+	</form>
+</body>
+</html>
