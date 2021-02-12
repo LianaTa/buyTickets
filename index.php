@@ -1,10 +1,7 @@
-<?php
- 
+<?php 
+
+include('timetable.php');
 date_default_timezone_set("UTC"); 
-
-$trip1 =  array(mktime(18,00,0),mktime(18,30,0),mktime(18,45,0),mktime(19,00,0),mktime(19,15,0),mktime(21,00,0));
-
-$trip2 =  array(mktime(18,30,0),mktime(18,45,0),mktime(19,00,0),mktime(19,15,0),mktime(19,35,0),mktime(21,50,0),mktime(21,55,0));
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,40 +16,32 @@ $trip2 =  array(mktime(18,30,0),mktime(18,45,0),mktime(19,00,0),mktime(19,15,0),
 	<form id = "buyTicketsForm">
 			<p>
       			<label for="user-direction">Направление</label>
-      			<select id = "user-direction">
-      				    <option value="1" selected="selected">из A в B</option>
-                	<option value="2">из B в A</option>
-                	<option value="3">из A в B и обратно в А</option>
+      			<select id = "user-direction" class="user-direction">
+                  <option selected="selected">Выберите направление</option>
+      				    <option value="0" >из A в B</option>
+                	<option value="1">из B в A</option>
+                	<option value="2">из A в B и обратно в А</option>
       			</select>
     		</p>
     		<p>
-    			<label for="trip-time">Выберите время</label>
-				  <select name="time" id="tripAtoB">
-					<?php
-						for($i=0;$i<count($trip1);$i++){
-							echo "<option value='".$trip1[$i]."'>".date('H-i',$trip1[$i])."(из А в В)</option>";
-						}
-
-					?>
-          </p>
-				  </select>
-          <select name="time" id="tripBtoA" class="hide">
-          <p>
-          <?php
-            
-           for($i=0;$i<count($trip2);$i++){
-              
-              echo "<option value='".$trip2[$i]."'>".date('H-i',$trip2[$i])."(из B в A)</option>";
-            }
-
-          ?>
-          </p>
+    			<label for="trip-time">Туда</label>
+          <select name="trip-time" id = "trip1" class="trip1" data-id="0">
+            <option selected="selected">Выберите время</option>
           </select>
+        </p>
+        <p id="trip2-time" class="hide trip2-time">
+          <label for = "trip-time">Обратно</label>
+          <select name="trip-time" id = "trip2" class="trip2" data-id="0">
+            <option selected="selected">Выберите время</option>
+          </select>
+        </p>
+          
 
     		<p>
       			<label for="tickets-num">Количество билетов</label>
       			<input id="tickets-num" type="text" value="1" name="tickets-num" >
     		</p>
+          <input type="hidden" name="flag" id = "flag" value = "1">
         	<button class="btn btn--contact_form" type="submit">Посчитать</button>
 	</form>
   <div id="orderResult"></div>
